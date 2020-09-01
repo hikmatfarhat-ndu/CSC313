@@ -4,7 +4,7 @@ published: true
 ---
 
 ## Syllabus
-Data strcutures, online course creation tool. It is designed to minimize the amount of time you need to spend fumbling around with technology, allowing you to focus on bringing together the resources, activities, and lessons that you want to share with the world.
+Data strcutures,    online course creation tool. It is designed to minimize the amount of time you need to spend fumbling around with technology, allowing you to focus on bringing together the resources, activities, and lessons that you want to share with the world.
 
 Course materials are written in [Markdown](https://www.markdownguide.org/) and hosted on [Github](https://www.github.com), a popular development platform that allows for collaborative drafting, version control, and easy dissemination of your course.
 
