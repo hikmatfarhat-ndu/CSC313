@@ -1,0 +1,28 @@
+---
+---
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+@import "p2pu-theme/fonts";
+@import "p2pu-theme/variables";
+@import "bootstrap/scss/bootstrap";
+@import "p2pu-theme/mixins";
+@import "p2pu-theme/utilities";
+@import "p2pu-theme/layout";
+@import "p2pu-theme/typography";
+@import "p2pu-theme/buttons";
+@import "p2pu-theme/footer";
+@import "p2pu-theme/custom";
+@import "native.css";
+
+{% if site.jumbotron_color %}
+	$jumbotron-color: {{ site.jumbotron_color }};
+{% else %}
+ $jumbotron-color: $p2pu-blue;
+{% endif %}
+
+{% if site.jumbotron_background_image %}
+	$jumbotron-image: '{{ site.jumbotron_background_image }}';
+{% else %}
+	$jumbotron-image: 'banner.svg';
+{% endif %}
+
+@import "custom";

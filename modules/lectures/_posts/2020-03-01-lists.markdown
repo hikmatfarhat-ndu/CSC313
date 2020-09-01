@@ -1,0 +1,8 @@
+---
+title: Vectors, Lists...
+---
+
+## We refer to quite a lot of terms and resources in this course - here is where they're all explained, because we like to avoid jargon!
+
+
+[Vector](/modules/lectures/vector/) 
