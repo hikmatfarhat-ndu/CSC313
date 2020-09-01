@@ -1,0 +1,580 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+	<meta charset="utf-8">
+	<!--[if IE]><meta content='IE=8' http-equiv='X-UA-Compatible' /><![endif]-->
+
+	<title>Data Structures | C++ Review</title>
+  <meta name="description" content="Data Structures">
+  <meta name="author" content="">
+
+  <meta property="og:title" content="Data Structures" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+	<link rel="stylesheet" href="/css/p2pustrap-custom.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+  
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<script type="text/javascript" src="/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body 
+      class="">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md py-0 .navbar-dark bg-dark text-light">
+  <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      
+       
+       <li class="nav-item py-0 active">
+         <a class="nav-link" href="/modules/lectures/introduction/">
+           lectures
+         </a>
+       </li>
+      
+       
+       <li class="nav-item py-0">
+         <a class="nav-link" href="/modules/homework/introduction/">
+           homework
+         </a>
+       </li>
+      
+       
+       <li class="nav-item py-0">
+         <a class="nav-link" href="/modules/code/intro/">
+           code
+         </a>
+       </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+		<div class="sidebar col-md-3">
+	
+
+
+
+
+
+
+
+	
+	<ul>
+		
+			<li class=" first ">
+				<a
+						href="/modules/lectures/introduction/">
+					Introduction
+				</a>
+			</li>
+		
+			<li class="active  ">
+				<a
+						href="/modules/lectures/c++review/">
+					C++ Review
+				</a>
+			</li>
+		
+			<li class="  ">
+				<a
+						href="/modules/lectures/complexity/">
+					Complexity
+				</a>
+			</li>
+		
+			<li class="  ">
+				<a
+						href="/modules/lectures/lists/">
+					Vectors, Lists...
+				</a>
+			</li>
+		
+			<li class="  ">
+				<a
+						href="/modules/lectures/trees/">
+					Trees
+				</a>
+			</li>
+		
+			<li class="  ">
+				<a
+						href="/modules/lectures/sorting/">
+					Sorting
+				</a>
+			</li>
+		
+			<li class="  last">
+				<a
+						href="/modules/lectures/graphs/">
+					Graphs
+				</a>
+			</li>
+		
+	</ul>
+	
+		<hr />
+		<div class="pagination-section">
+			<div class="title">
+				Next module:
+			</div>
+			<a rel="next" class="next" href="/modules/homework/introduction/"> homework
+			</a>
+		</div>
+	
+</div>
+
+		<div class="col-md-9 bg-white">
+			<div class="col-lg-8 offset-lg-1">
+				<div class="row">
+					<div class="content col-12">
+						<h2 id="variables-and-references">Variables and references</h2>
+
+<p>When we define (declare) a variable the system reserves space in memory to store the
+value associated with that variable. This is the reason why we need to specify the 
+type of the variable since the required space depends on it. For example (typically), 
+an <code class="language-plaintext highlighter-rouge">int</code> and <code class="language-plaintext highlighter-rouge">float</code> need 4 bytes whereas <code class="language-plaintext highlighter-rouge">long</code> and <code class="language-plaintext highlighter-rouge">double</code> need 
+8 bytes. Because every variable is associated with a location in memory we can
+determine the memory address where the variable is located using the &amp; operator. Note 
+that the &amp; operator can have different meaning depending on context.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+int main(){
+//a location in memory is reserved and labeled x
+int x=2;
+//y is just another name for the same location. no reservation is done.
+int&amp; y=x;
+//a location is reserved for z and the value of x is copied
+int z=x;
+z=17;
+y=13;
+//print the value of the variables and their respective addresses
+std::cout&lt;&lt;"x= "&lt;&lt;x&lt;&lt;" and &lt;&lt;"&amp;x="&lt;&lt;&amp;x&lt;&lt;std::endl;
+std::cout&lt;&lt;"x= "&lt;&lt;y&lt;&lt;" and &lt;&lt;"&amp;x="&lt;&lt;&amp;y&lt;&lt;std::endl;
+std::cout&lt;&lt;"x= "&lt;&lt;z&lt;&lt;" and &lt;&lt;"&amp;x="&lt;&lt;&amp;z&lt;&lt;std::endl;
+
+}
+</code></pre></div></div>
+<p>Note that <code class="language-plaintext highlighter-rouge">int&amp; y=x;</code> declares <em>y</em> as a reference to <em>x</em> whereas <code class="language-plaintext highlighter-rouge">&amp;x</code> gives the memory address of <em>x</em>. The different declarations used above carry to the parameters in function calls. For example,</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+void byValue(int n){
+    n=17;
+}
+void byRef(int&amp; n){
+    n=12;
+}
+int main(){
+  int x=2;
+  byValue(x);
+  std::cout&lt;&lt;x&lt;&lt;std::endl;
+  byRef(x);
+    std::cout&lt;&lt;x&lt;&lt;std::endl;
+
+}
+</code></pre></div></div>
+<p>So in the call to the function <code class="language-plaintext highlighter-rouge">byValue(x)</code> it is <strong>as if</strong> we declare <code class="language-plaintext highlighter-rouge">int n=x;</code> and therefore <em>n</em> is a <strong>copy</strong> of <em>x</em>. By contrast, <code class="language-plaintext highlighter-rouge">byRef(x)</code> is is <strong>as if</strong> we declare <code class="language-plaintext highlighter-rouge">int&amp; n=x;</code> so no copy is made and <em>n</em> is a reference to <em>x</em>.
+Usually we call by reference when either we want to change the input or  when the input is large and copying becomes expensive. We can use the best of both by using a const reference</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int byCRef(const int&amp; n){
+    n=37;//error cannot modify n
+    return 2*n;
+}
+</code></pre></div></div>
+<p>Also, const allows us to pass literals and temporaries.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int byT(int n){
+    return 7*n;
+}
+int byCRef(const int &amp; n){
+    n=n+1;//error n is const
+    return 2*n;
+}
+int byRef(int&amp; n){
+    n=n+1;//changes the value of parameter
+    return 2*n;
+}
+int main(){
+    byRef(2);//error cannot bind a non-const lvalue to rvalue
+    byCRef(2);//OK
+    byRef(byT(2));//error since the return value of byT is a temp
+    byCRef(byT(2));//OK
+    int&amp; r=byT(2);//error cannot bind 
+    int&amp;&amp; res=byT(2);//ok
+}
+</code></pre></div></div>
+
+<p>You can run the above code <a href="https://repl.it/@hfarhat/lvalue-rvalue-references">here</a>.
+Since C++11 there is a new type of references called <strong>rvalue</strong> references.
+The variable <em>res</em> above extends the lifetime of the temporary object created by the ByT() function.  To see that consider when the destructor is called in the following code</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+struct Test {
+  int _x;
+  Test(int x=0):_x(x){}
+  ~Test(){
+    std::cout&lt;&lt;"dtor "&lt;&lt;_x&lt;&lt;std::endl;
+  }
+};
+Test RT(int val){
+   return Test(val);
+}
+int main() {
+Test&amp;&amp; res=RT(8);
+std::cout&lt;&lt;"creating 7\n";
+RT(7);
+std::cout&lt;&lt;" done\n";
+
+}
+</code></pre></div></div>
+<p>You can run the above code <a href="https://repl.it/@hfarhat/lvalue-rvalue-reference2">here</a>
+Note that  when when an rvalue reference  is used, it is used as a lvalue reference. This is called <strong>move semantics is not passed through</strong> .For the example the following recursive function gives an error</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void doit(std::string&amp;&amp; s){
+  if(s!="hello")
+    doit(s);
+
+}
+</code></pre></div></div>
+<p>this is a fix</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void doit(std::string&amp;&amp; s){
+  if(s!="hello"){
+    s="hello"; //this line so we don't go into infinite recursion
+    doit(std::move(s));
+  }
+    
+}
+</code></pre></div></div>
+<h2 id="return-values">Return values</h2>
+<p>unless the compiler performs return value optimization (rvo) the following occurs
+(in g++ or clang++ specify -fno-elide-constructors to skip optimization)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Test {
+        Test(){
+          std::cout&lt;&lt;"ctor\n";
+        }
+        Test(const Test&amp; rhs){
+          std::cout&lt;&lt;"copy ctor\n";
+        }
+        ~Test(){
+          std::cout&lt;&lt;"dtor\n";
+        }
+};
+Test retTest(){
+        return Test();
+}
+int main(){
+  Test t=retTest();
+}
+</code></pre></div></div>
+<p>what happens is the following</p>
+<ol>
+  <li>inside function <code class="language-plaintext highlighter-rouge">retTest()</code> an object of type Test is created on the stack</li>
+  <li>a tmp object of type Test is copy constructed from that object</li>
+  <li>the object on the stack is dtored</li>
+  <li>t in main is copy ctored from the tmp</li>
+  <li>tmp is destroyed</li>
+  <li>when main exists t is destroyed
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$g++-10 -fno-elide-constructors -std=c++11 rvopt.cpp
+$./a.out
+ctor
+copy ctor
+dtor
+copy ctor
+dtor
+dtor
+$g++-10 -std=c++20 rvopt.cpp
+$./a.out
+ctor
+dtor
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="pointers">Pointers</h2>
+<p>A pointer variable is a variable that holds and address. We say variable <em>p</em> points to variable <em>x</em> if <em>p</em> holds the address of <em>x</em>: <code class="language-plaintext highlighter-rouge">int *p=&amp;x;</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(){
+int x=17,y=45;
+int* p=&amp;x;
+std::cout&lt;&lt;p&lt;&lt;std::endl;//prints the value of p, i.e. the address of x
+std::cout&lt;&lt;*p&lt;&lt;std::endl;//prints the value store at the location p, i.e. x
+*p=23;//change the value of x
+p=&amp;y;//p now stores the address of y
+}
+</code></pre></div></div>
+<p>Pointers usually are used when we need to dynamically allocate memory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(){
+    int *p=new int;//reserve space for int. Value undefined
+    int *q=new int(8);//reserve space for int and store 8
+    *p=55;//store value 55 at address p
+    delete p;//release the reserved memory;
+}
+</code></pre></div></div>
+<h2 id="templates">Templates</h2>
+
+<p>On many occasions we write multiple versions of the same code to handle different types. For example suppose we want to write a function to add two numbers (using the + operator) we write</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int add(int x,int y){
+    return x+y;
+}
+int add(double x,double y){
+    return x+y;
+}
+
+</code></pre></div></div>
+<p>Recall also that the + operator can be used to concatenate strings so we have to add that also. Since the all of those versions only the type changes, c++ allows us to pass the type as a parameters using templates.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+template&lt;typename T&gt;
+T add(T x,T y){
+    return x+y;
+}
+int main(){
+    int x=2,y=3;
+    double u=3.4,v=3;
+    std::string s="hello",k="there";
+
+    std::cout&lt;&lt;add(x,y)&lt;&lt;std::endl;
+    std::cout&lt;&lt;add(u,v)&lt;&lt;std::endl;
+    std::cout&lt;&lt;add(s,k)&lt;&lt;std::endl;
+}
+
+</code></pre></div></div>
+
+<p>In the above example the compiler automatically deduces the type which sometimes it cannot and we have to specify it as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add&lt;int&gt;(x,y);
+add&lt;double(u,v);
+add&lt;std::string&gt;(s,k);
+
+</code></pre></div></div>
+
+<p>Note that the template is instantiated <strong>as needed</strong> at compile time. Also, we can pass parameters to the template other than types. For example</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>template &lt;int n&gt;
+void doit(){
+    int a[n];
+}
+</code></pre></div></div>
+
+<h1 id="classes">Classes</h1>
+
+<p>In C++ new types are created using classes. Once a class is defined new objects can be instantiated from such a class. Minimal syntax of a (useless) class</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test{};
+int main(){
+    Test t;
+}
+</code></pre></div></div>
+
+<p>A class can have <strong>member variables</strong> and <strong>member functions</strong>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test{
+    int _x;
+    public:
+    int&amp; x(){
+        return _x;
+    }
+    
+};
+int main(){
+    Test t;// at this point _x is undefined
+    t.x()=17;
+}
+</code></pre></div></div>
+<p>By default all members of a class are <strong>private</strong> and hence inaccessible from outside the scope of the object. To make a member accessible we use the keyword <strong>public</strong>. Note that the <strong>member function</strong> <code class="language-plaintext highlighter-rouge">x()</code> returns a <strong>reference</strong> to _x and this allows us to change the value of _x. We can use pointers as usual where the code below is equivalent to the one above but using the arrow instead of the dot operator.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(){
+    Test * p=new Test();
+    p-&gt;x()=17;
+}
+</code></pre></div></div>
+
+<p>In fact the private and public qualifiers can be used for any and all members. For example</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test {
+    private: int _x;//_x is private
+    public: int _y;// _y is public
+     int _z;// _z is public. The keyword carries over until it changes
+     private: void f(){}
+     public: int&amp; x(){return _x;}
+}
+</code></pre></div></div>
+<p>But usually all public members are grouped together using a single keyword and the same for private members;</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main(){
+    Test t;
+    t._x;//error _x is inaccessible
+    t._y=t._z;//OK both are public
+    t.x();//OK
+    t.f();//Error f is inaccessible
+}
+</code></pre></div></div>
+
+<h2 id="constructors-and-destructors">Constructors and destructors</h2>
+
+<p>For builtin types like int and double a variable is “created” (memory is reserved) when the variable is declared. Once the variable is out of scope is it “destroyed” (memory is released. The same thing is done for objects instantiated from classes. This is done by using <strong>constructor</strong> and <strong>destructor</strong>. When one don’t supply our own versions a default version is used by the compiler which basically calls the constructors and destructors of the member variables.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Test {
+    public:
+    int _x;
+    double _y;
+}
+int main(){
+    Test t;
+    std::cout&lt;&lt;t._x&lt;&lt;std::endl;
+    std::cout&lt;&lt;t._y&lt;&lt;std::endl;
+
+
+}
+</code></pre></div></div>
+<p>No constructor is supplied so the compiler uses a default that creates variables _x and _y. The output is</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+0
+</code></pre></div></div>
+
+<h1 id="extra">Extra</h1>
+
+<h2 id="constructors">Constructors…</h2>
+
+<p>A constructor builds an object bottom up.</p>
+<ol>
+  <li>the constructor of the base class (if any) is called</li>
+  <li>members instructors are called</li>
+  <li>Finally the constructor body is executed.</li>
+</ol>
+
+<p>For example</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Item {
+    Item(){std::cout&lt;&lt;"Item ctor\n";}
+    Item(int i){std::cout&lt;&lt;""Item ctor with input\n";}
+};
+struct Test {
+    Item _i;
+    int x;
+};
+void noinit(){
+    int x=12,y=77,z=99;
+    Test t;
+    std::cout&lt;&lt;t.x&lt;&lt;std::endl;
+}
+void init(){
+    int x=12,y=77,z=99;
+    Test t {};//initialize to zero
+    std::cout&lt;&lt;t.x&lt;&lt;std::endl;
+}
+int main(){
+    noinit();
+    init();
+}
+</code></pre></div></div>
+<p>Run to get the output</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>item ctor
+723520304
+item ctor
+0
+</code></pre></div></div>
+<p>As we can see from the above example built-in types are <strong>not</strong> initiaized: some times they are zero sometimes they are not, it depends on the compiler. For class types the default constructor is called. We can control the constructor and the initialization of members as follows</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Test {
+    Test(int x,int i):_x(x),_i(i){}
+}
+</code></pre></div></div>
+
+						
+
+
+
+
+
+						
+							<hr />
+						
+						
+							<div class="pagination-section pull-left">
+								<div class="title">
+									Previous section:
+								</div>
+								<a rel="prev" class="prev" href="/modules/lectures/introduction/">
+									Introduction </a>
+							</div>
+						
+						
+							<div class="pagination-section pull-right">
+								<div class="title">
+									Next section:
+								</div>
+								<a rel="next" class="next" href="/modules/lectures/complexity/"> Complexity
+								</a>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+
+
+<footer>
+  <p>Built using <a href="https://howto.p2pu.org">Course in a Box</a>, a project of <a href="https://www.p2pu.org">P2PU</a>.</p>
+
+  <p>Unless otherwise noted, all the materials on this site are licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.</p>
+</footer>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="/js/init.js"></script>
+<script src="/js/gh_link_helper.js"></script>
+
+
+
+<script>
+	P2PU.ciab.init();
+</script>
+
+<!-- Google Analytics -->
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  
+    ga('create', 'UA-5757664-19', 'auto');
+  
+  
+    ga('create', 'UA-55722824-1', 'auto', {'name': 'p2puTracker'} );
+  
+  
+    ga('send', 'pageview');
+  
+  
+    ga('p2puTracker.send', 'pageview');
+  
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,776 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+	<meta charset="utf-8">
+	<!--[if IE]><meta content='IE=8' http-equiv='X-UA-Compatible' /><![endif]-->
+
+	<title>Data Structures | Stl Vector</title>
+  <meta name="description" content="Data Structures">
+  <meta name="author" content="">
+
+  <meta property="og:title" content="Data Structures" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+
+	<link rel="stylesheet" href="/css/p2pustrap-custom.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+  
+
+	<link rel="shortcut icon" href="/img/favicon.ico">
+	<script type="text/javascript" src="/js/modernizr-2.6.2.min.js"></script>
+</head>
+<body 
+      class="">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md py-0 .navbar-dark bg-dark text-light">
+  <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <div class="navbar-collapse collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      
+       
+       <li class="nav-item py-0">
+         <a class="nav-link" href="/modules/lectures/introduction/">
+           lectures
+         </a>
+       </li>
+      
+       
+       <li class="nav-item py-0">
+         <a class="nav-link" href="/modules/homework/introduction/">
+           homework
+         </a>
+       </li>
+      
+       
+       <li class="nav-item py-0 active">
+         <a class="nav-link" href="/modules/code/intro/">
+           code
+         </a>
+       </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="container-fluid">
+  <div class="row">
+		<div class="sidebar col-md-3">
+	
+
+
+
+
+
+
+
+	
+		<div class="pagination-section">
+			<div class="title">
+				Previous module:
+			</div>
+			<a rel="prev" class="prev" href="/modules/homework/introduction/">
+				homework </a>
+		</div>
+		<hr />
+	
+	<ul>
+		
+			<li class=" first ">
+				<a
+						href="/modules/code/intro/">
+					Introduction
+				</a>
+			</li>
+		
+			<li class="active  ">
+				<a
+						href="/modules/code/STL-vector/">
+					Stl Vector
+				</a>
+			</li>
+		
+			<li class="  last">
+				<a
+						href="/modules/code/vector/">
+					Vector
+				</a>
+			</li>
+		
+	</ul>
+	
+</div>
+
+		<div class="col-md-9 bg-white">
+			<div class="col-lg-8 offset-lg-1">
+				<div class="row">
+					<div class="content col-12">
+						
+<p>Many of the data structures that we will be studying and implementing are already implemented in the Standard Template Library (STL). Our strategy is to use and familiarize ourselves with the provided containers and algorithms and then implement them ourselves.</p>
+<h1 id="vector-container">Vector container</h1>
+<p>A vector is basically a dynamic array. We can add and remove elements from it and it auto resizes itself. Since we would like to store any type of objects in a vector the implementation uses templates to pass any type to the vector. A vector has the all usual syntax of arrays, specifically the indexing.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="c1">//declare a vector of int. creates an empty vector</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="c1">//declare a vector of strings</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&gt;</span> <span class="n">sv</span><span class="p">;</span>
+    <span class="c1">//add elements to the end</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">sv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
+    <span class="n">sv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
+    <span class="c1">//print all elements similar to arrays</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">sv</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">","</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="c1">//print all elements using range-based for loop</span>
+    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">x</span><span class="o">:</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>   
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You can try the code <a href="https://repl.it/@hfarhat/vector-ex1">here</a>
+The <code class="language-plaintext highlighter-rouge">push_back</code> member function adds an element at the end of the vector. Above we have used two features from c++11: auto and range-based for loops. As you can see we can create a vector of any type (note the syntax). 
+<strong>Note</strong>: since the type of an auto variable is inferred by the compiler it cannot be used with <em>uninitialized</em> variables.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">auto</span> <span class="n">x</span><span class="p">;</span><span class="c1">//error</span>
+<span class="k">auto</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//OK</span>
+</code></pre></div></div>
+<h2 id="automatic-allocation">Automatic allocation</h2>
+
+<p>In a typical use case when we use <code class="language-plaintext highlighter-rouge">push_back</code> we don’t know in advance the size of the data. If memory allocated to the vector is “full” then the vector needs to allocate more space <strong>and</strong> copy the existing data to the new storage space before adding the new values.
+Let us look an example using arrays</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">//create an array of two elements</span>
+        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span><span class="c1">//array is full</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"copying</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="kt">int</span><span class="o">*</span> <span class="n">old</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="n">size</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+        <span class="p">}</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"------content-------</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div></div>
+<p>It is obvious from the example that there is a lot of copying. In fact if we add <em>n</em> numbers there will be <em>n<sup>2</sup></em> operations. A smarter strategy would be to overallocate. The overallocation is STL implementation dependent. A good rule of thumb, used by the g++ STL, is to double the size every time.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">{</span>
+        <span class="c1">//create an array of two elements</span>
+        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span><span class="c1">//array is full</span>
+                <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"copying</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+                <span class="kt">int</span><span class="o">*</span> <span class="n">old</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">size</span><span class="p">];</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+                    <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">old</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="n">size</span><span class="o">*=</span><span class="mi">2</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+        <span class="p">}</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"------content-------</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>But as you can see in the output, after the 10th element the values are arbitrary. This is because we didn’t differentiate between <strong>size</strong> and <strong>capacity</strong>. This is exactly how a vector handles allocated memory.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"i= "</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">", capacity="</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you run the above you will see the effect of preallocating memory. <strong>Note</strong>: it seems the msc++ uses a different preallocation strategy. From what i see it looks that the size is incremented 50% every time instead of 100%.</p>
+<h3 id="iterators">Iterators</h3>
+<p>Iterators are generalization of pointers and present a common interface to all STL containers and algorithms. For an array a pointer is sufficient since the elements of an array form a contiguous location in memory. What if the elements are not stored contiguously? Since every container stores the elements differently it implements its own methods to <em>iterate</em> over its elements. This has the added value that the user does not need to know the internal workings of the container in order to be able to use it.
+ Given a container <strong>c</strong> an iterator <strong>itr</strong> points at an element stored in <strong>c</strong>. Therefore dereferencing an iterator <strong>(*itr)</strong> will return the element itself. Also iterators can be incremented and decremented like pointers: (itr++) and (itr–). Furthermore, every container <strong>c</strong> has a <strong>begin</strong> and <strong>end()</strong> method. As an example, suppose that we have a container that stores an integer sequence from 0 to n-1 but even numbers first then odd numbers. For example, 0,2,4,6,8,1,3,5,7,9. Below is a code that allow us to iterate over the values in order</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Container</span> <span class="p">{</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="o">*</span> <span class="n">_begin</span><span class="p">;</span>
+<span class="nl">protected:</span>
+    <span class="kt">int</span> <span class="n">_size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">_end</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="k">class</span> <span class="nc">Iterator</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">*</span> <span class="n">current</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">_size</span><span class="p">;</span>
+    <span class="nl">public:</span>
+        <span class="n">Iterator</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="o">:</span><span class="n">current</span><span class="p">(</span><span class="n">p</span><span class="p">),</span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Iterator</span> <span class="k">operator</span><span class="o">++</span><span class="p">()</span> <span class="p">{</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">current</span> <span class="o">==</span> <span class="n">_size</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">current</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">current</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="n">_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">-</span><span class="n">_size</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+            <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">int</span> <span class="k">operator</span> <span class="o">*</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="o">*</span><span class="n">current</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">Iterator</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">current</span> <span class="o">!=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">current</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+    <span class="p">};</span>
+    <span class="n">Container</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="o">:</span><span class="n">_size</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="n">_size</span><span class="p">];</span>
+        <span class="n">_begin</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">_end</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">_size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">p</span><span class="p">[</span><span class="n">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="k">else</span>
+                <span class="n">p</span><span class="p">[</span><span class="n">_size</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">Iterator</span> <span class="n">begin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">_begin</span><span class="p">,</span><span class="n">_size</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">Iterator</span> <span class="n">end</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">_end</span><span class="p">,</span><span class="n">_size</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<p>so we can print the values in order as follows:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">Container</span> <span class="nf">c</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Container</span><span class="o">::</span><span class="n">Iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">itr</span> <span class="o">!=</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">itr</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>Note the syntax for a dependent type (we could have used auto) because Iterator is a nested class. Similarly to the above we can use iterators with any STL container. In particular with vectors.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;vector&gt;
+#include &lt;iostream&gt;
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">sv</span><span class="p">;</span>
+  <span class="n">sv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"one"</span><span class="p">);</span>
+  <span class="n">sv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"two"</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">itr</span><span class="o">=</span><span class="n">sv</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="n">itr</span><span class="o">!=</span><span class="n">sv</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="n">itr</span><span class="o">++</span><span class="p">){</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="o">*</span><span class="n">itr</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  
+</code></pre></div></div>
+
+<p>The auto keyword is useful since otherwise we have to write down the long type of the iterator: (since it is an iterator to container of type <code class="language-plaintext highlighter-rouge">std::vector&lt;std::string&gt;</code>)</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">itr</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>vectors can be used similarly to arrays.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv</span><span class="p">;</span>
+<span class="n">iv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">iv</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">iv</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+  <span class="n">iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Since vectors are required by the c++ standard to use contiguous memory 
+it is best to add and remove(as opposed to change) from the end of a vector.
+We still can insert and erase elements at arbitrary position using iterators but it is a <em>costly</em> operation.</p>
+
+<h2 id="pre-allocation">Pre allocation</h2>
+
+<p>In what follows we will use a TestClass.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">nodebug</span><span class="o">=</span><span class="mi">0</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">TestClass</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">;</span>
+    <span class="n">TestClass</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span><span class="n">_x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">_y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">nodebug</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ctor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="p">}</span>
+    <span class="n">TestClass</span><span class="p">(</span><span class="k">const</span> <span class="n">TestClass</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">nodebug</span><span class="p">)</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"copy ctor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_x</span><span class="p">;</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_y</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="n">TestClass</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">TestClass</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">nodebug</span><span class="p">)</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"assignment</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">_x</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_x</span><span class="p">;</span>
+        <span class="n">_y</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">_y</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">val</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_x</span><span class="p">,</span> <span class="n">_y</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_x</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">_y</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">TestClass</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">nodebug</span><span class="p">)</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"dtor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p>Let us see what happens when we add objects of type TestClass to a vector.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">TestClass</span> <span class="nf">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span> <span class="nf">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>if we run the above we get the following output</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ctor</span>
+<span class="n">ctor</span>
+<span class="n">copy</span> <span class="n">ctor</span>
+<span class="n">copy</span> <span class="n">ctor</span>
+<span class="n">copy</span> <span class="n">ctor</span>
+<span class="p">...</span>
+</code></pre></div></div>
+
+<p>You can try the code <a href="https://repl.it/@hfarhat/vector-ex2">here</a>
+Obviously there are two calls for the constructor for a and b. The method push_back saves a <strong>copy</strong> of the input hence the two calls for the copy constructor. The third call for the copy constructor is because the vector was resized to accommodate b.</p>
+
+<p>Sometimes it is useful to preallocate memory to minimize the number of copy operations when the vector is resized. There are two ways of doing this.</p>
+<ol>
+  <li>Specifying the size when the vector is created</li>
+  <li>Using the vector::reserve method</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"size= "</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"----------------</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"size= "</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"----------------</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The output of the above code is</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ctor</span>
+<span class="n">ctor</span>
+<span class="n">ctor</span>
+<span class="n">ctor</span>
+<span class="n">assignment</span>
+<span class="n">assignment</span>
+<span class="n">size</span><span class="o">=</span> <span class="mi">2</span>
+<span class="o">----------------</span>
+<span class="n">ctor</span>
+<span class="n">ctor</span>
+<span class="n">copy</span> <span class="n">ctor</span>
+<span class="n">copy</span> <span class="n">ctor</span>
+<span class="n">size</span><span class="o">=</span> <span class="mi">2</span>
+<span class="o">----------------</span>
+</code></pre></div></div>
+
+<p>This is because not only the vector constructor reserves space for two objects but it will also call the default constructor of the object to initialize the reserved space. In this case we use the index operator to change the values. Whereas the member function reserve does not create objects when it reserves space.
+Removing elements from the <strong>end</strong> of the vector is done using <code class="language-plaintext highlighter-rouge">pop_back()</code></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<h2 id="insertion-and-deletion">insertion and deletion</h2>
+<p>So far we added and removed elements from the <strong>end</strong> of the vector. We can do the same operations at <strong>arbitrary positions</strong> using iterators even though if these operations are to be done repeatedly a <strong>vector is not the best data structure to use</strong>.</p>
+<h3 id="insertion">insertion</h3>
+<p>The code below uses the <em>insert</em> function to add an element between <strong>a</strong> and <strong>b</strong> of the vector.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+
+<span class="c1">//insert d between a and b</span>
+ <span class="k">auto</span> <span class="n">itr</span><span class="o">=</span><span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="p">);</span>
+ <span class="c1">//find where d is inserted</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">itr</span><span class="p">)</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"element inserted here: "</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>If you inspect the output you will see the following happening</p>
+<ol>
+  <li>ctor is used to create a,b,c,d.</li>
+  <li>copy ctor is used to to copy the values of a,b,c to the vector (push_back)</li>
+  <li>copy ctor is used to make a copy of d</li>
+  <li>copy ctor is used to copy the value of c the 4th place that was reserved in the vector.</li>
+  <li>Assignment is used to overwrite the 3rd place by the value of b</li>
+  <li>Assignment is used to overwrite the 2nd place by the value of d</li>
+</ol>
+
+<p>This means that <strong>inserting</strong> a value in a vector any place <strong>other than the end</strong> will cause order of <strong>n</strong> copy/assignments. If such insertions are done often then a vector is not the optimal data structure to use. Note that the return value of insert is an iterator to the element that was inserted.
+Similarly, we can erase values from a vector at arbitrary positions</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"size= "</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"----------------</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"-------done----</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Since the deleted element is at the beginning of the vector it also triggers an order of <strong>n</strong> assignments to move values to the left.
+Because of that, if you need to remove multiple items meeting a certain criterion, it is better to use the <strong>remove/erase idiom</strong>. We illustrate with two different ways of removing elements whose <strong>y</strong> value is 2 from a vector. The first, goes through a loop and when it finds an element with y==2 it erases it. Note that erase returns an iterator to the element <strong>after</strong> the erased one.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"---searching--</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">itr</span> <span class="o">!=</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">();)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">itr</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">itr</span><span class="o">=</span><span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">itr</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">itr</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"----done searching</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+  <span class="p">}</span>
+
+
+</code></pre></div></div>
+<p>The second, more efficient way is to use the <strong>std::remove_if then erase</strong>. The function std::remove_if doesn’t actually remove elements, it “moves all elements meeting the criterion towards the end” of the vector and returns an iterator to the first one.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="n">v</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span> <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"---searching--</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">itr</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">remove_if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span>
+<span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">itr</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"----done searching</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="accumulate">accumulate</h3>
+
+<p>The standard fold operation in functional languages is implemented using the std::accumulate function. It takes a range (i.e. start and end iterators) and an initial value (usually zero). By default accumulate adds all the numbers in the range. so</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">,</span><span class="n">init</span><span class="p">);</span>
+</code></pre></div></div>
+<p>is equivalent to</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">,</span><span class="n">init</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">plus</span><span class="p">{});</span>
+</code></pre></div></div>
+<p>This means we can change the default behavior by supplying our own function. Accumulate works by repeatedly calling (default case plus) the function on the current element and the accumulated value starting with *start and init. The example below multiplies all the elements of the vector.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">res</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="mi">1</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">multiplies</span><span class="p">{});</span>
+</code></pre></div></div>
+
+<p>A more complicate example is shown below where we add the even and odd numbers separately.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">{</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">e</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+     <span class="k">const</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span><span class="k">return</span> <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+     <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+         <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    
+     <span class="k">const</span> <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+         <span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sum</span><span class="p">,</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+             <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">?</span><span class="n">sum</span><span class="p">.</span><span class="n">first</span> <span class="o">+=</span> <span class="n">n</span><span class="o">:</span><span class="n">sum</span><span class="p">.</span><span class="n">second</span> <span class="o">+=</span> <span class="n">n</span><span class="p">;</span>
+             <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+         <span class="p">});</span>
+     <span class="k">auto</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="extra">Extra</h2>
+<p>We give here a more complicated example of the remove/erase idiom. Suppose that we have a vector of strings and some of them are empty. This typically occurs when reading some delimited data from a file in which some of the fields are empty. Suppose further that we want to remove all <strong>all_blank</strong> strings from the vector. Below is the code to do just that.
+First note the definition of the filter lambda: it returns true when the input is a blank character. The filter is used in the lambda res which returns an iterator to the first character that is <strong>not</strong> blank. If all characters are blank res returns the end() iterator.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vs</span><span class="p">{</span> <span class="s">"hi"</span><span class="p">,</span><span class="s">"  "</span><span class="p">,</span><span class="s">"there"</span><span class="p">,</span><span class="s">"hello"</span><span class="p">,</span><span class="s">"  "</span><span class="p">,</span><span class="s">"welcome"</span><span class="p">,</span><span class="s">"  "</span><span class="p">,</span><span class="s">"end"</span><span class="p">};</span>
+    <span class="k">auto</span> <span class="n">filter</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">' '</span> <span class="o">?</span> <span class="nb">true</span> <span class="o">:</span> <span class="nb">false</span><span class="p">;</span> <span class="p">};</span>
+    <span class="k">auto</span> <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">find_if_not</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">x</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">filter</span><span class="p">);</span> <span class="p">};</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">remove_if</span><span class="p">(</span><span class="n">vs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vs</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">res</span><span class="p">(</span><span class="n">is</span><span class="p">)</span><span class="o">==</span> <span class="n">is</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="p">});</span>
+  
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">c</span> <span class="o">:</span> <span class="n">vs</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div></div>
+<p>You can run the above code <a href="https://repl.it/@hfarhat/remove-blank-strings">here</a>. Notice how some of the all blank strings become empty. This is the result of using move semantics.
+For example</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="p">{</span><span class="s">"test"</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">u</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"("</span><span class="o">&lt;&lt;</span><span class="n">u</span><span class="o">&lt;&lt;</span><span class="s">")"</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">"("</span><span class="o">&lt;&lt;</span><span class="n">s</span><span class="o">&lt;&lt;</span><span class="s">")"</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>You can try this code <a href="https://repl.it/@hfarhat/move-string">here</a>. As you can see <em>u</em> “steals” the resources of <em>s</em>, i.e. its characters. When we don’t use std::move then <em>u</em> would be a copy of <em>s</em>. Actually, std::move is just static cast to an rvalue reference.</p>
+
+<h3 id="transform">transform</h3>
+
+<p>One of the most useful STL functions is std::transform. It is similar to the map function in functional languages (and Python). It takes</p>
+<ol>
+  <li>A source range, defined by start and end iterators</li>
+  <li>An iterator to the beginning of the destination range. Note it is your responsibility to make sure that the destination range is large enough to fit the input</li>
+  <li>A function that takes an element from the input and transforms it to another element which be stored in the destination range. In the example below, we use transform to convert each TestClass element to another with _x and _y swapped.</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;&gt;</span> <span class="n">u</span><span class="p">;</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="n">u</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="n">u</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="n">u</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TestClass</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">u</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">();</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">x</span><span class="p">()</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">();</span>
+        <span class="n">t</span><span class="p">.</span><span class="n">y</span><span class="p">()</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span> 
+        <span class="k">return</span> <span class="n">t</span><span class="p">;</span> <span class="p">}</span>
+        <span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">a</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+<p>The STL iterators interface allows us to apply many STL algorithms to almost any container. Below is an example of a few of those algorithms.</p>
+
+<h3 id="counting">Counting</h3>
+
+<p>For the purpose of these examples we will use a simple vector of integers. Note we don’t use the reserve function because in that case no element is created and therefore begin==end.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;random&gt;
+#include &lt;algorithm&gt;
+</span>
+<span class="cp">#include &lt;vector&gt; {
+</span>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">e</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span><span class="k">return</span>  <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s"> The number of "</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">&lt;&lt;</span> <span class="s">" is "</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">m</span><span class="p">);</span>
+    <span class="err">}</span>
+
+</code></pre></div></div>
+<p>A different version allow us to use a predicate. For example below we count the even numbers in the input as well as print the min and max in the range.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;random&gt;
+#include &lt;algorithm&gt;
+</span>
+<span class="cp">#include &lt;vector&gt; {
+</span>    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">e</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span><span class="k">return</span>  <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s"> The # of evens is "</span>
+    <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">i</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">;});</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"min element is "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">min_element</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"max element is "</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">max_element</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="err">}</span>
+
+</code></pre></div></div>
+
+<p>Many of the algorithms we are using require that the destination has enough space to copy elements to it that is why we resize the destination vector before running the algorithm.
+There is a convenient back_insert_iterator that automatically calls the push_back method of the container so we don’t need to resize it beforehand.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">back_insert_iterator</span> <span class="n">itr</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">itr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">itr</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">itr</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+<p>Let us use a back_insert_iterator to filter all even numbers from a container. Note that vector <strong>d</strong> has 0 size and is not resized beforehand because we don’t know how many even numbers there are in the input.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">e</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span><span class="k">return</span>  <span class="n">dist</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">copy_if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">back_insert_iterator</span><span class="p">(</span><span class="n">d</span><span class="p">),</span>
+            <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span><span class="mi">0</span><span class="p">;</span> <span class="p">});</span>
+        <span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">x</span><span class="o">:</span><span class="n">d</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+<p>You can see the code <a href="https://repl.it/@hfarhat/stdaccumulate">code</a></p>
+
+
+						
+
+
+
+
+
+						
+							<hr />
+						
+						
+							<div class="pagination-section pull-left">
+								<div class="title">
+									Previous section:
+								</div>
+								<a rel="prev" class="prev" href="/modules/code/intro/">
+									Introduction </a>
+							</div>
+						
+						
+							<div class="pagination-section pull-right">
+								<div class="title">
+									Next section:
+								</div>
+								<a rel="next" class="next" href="/modules/code/vector/"> Vector
+								</a>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
+
+
+<footer>
+  <p>Built using <a href="https://howto.p2pu.org">Course in a Box</a>, a project of <a href="https://www.p2pu.org">P2PU</a>.</p>
+
+  <p>Unless otherwise noted, all the materials on this site are licensed under a <a target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0 license</a>.</p>
+</footer>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="/js/init.js"></script>
+<script src="/js/gh_link_helper.js"></script>
+
+
+
+<script>
+	P2PU.ciab.init();
+</script>
+
+<!-- Google Analytics -->
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  
+    ga('create', 'UA-5757664-19', 'auto');
+  
+  
+    ga('create', 'UA-55722824-1', 'auto', {'name': 'p2puTracker'} );
+  
+  
+    ga('send', 'pageview');
+  
+  
+    ga('p2puTracker.send', 'pageview');
+  
+</script>
+
+
+
+</body>
+</html>
