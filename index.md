@@ -4,24 +4,36 @@ published: true
 ---
 
 ## Syllabus
-Data strcutures,    online course creation tool. It is designed to minimize the amount of time you need to spend fumbling around with technology, allowing you to focus on bringing together the resources, activities, and lessons that you want to share with the world.
 
-Course materials are written in [Markdown](https://www.markdownguide.org/) and hosted on [Github](https://www.github.com), a popular development platform that allows for collaborative drafting, version control, and easy dissemination of your course.
+This course provides a detailed coverage of standard data structures with an emphasis on 
+complexity analysis. Topics include: Asymptotic analysis, vectors, linked lists, stacks, queues,
+trees and balanced trees, hashing, priority queues and heaps, sorting. Standard graph algorithms 
+such as DFS, BFS, shortest paths and minimum spanning trees are also covered.
+We will be making heavy use of C++ so it is important you read the c++ review early before the course really takes off.
 
-Using Course in a Box and hosting a course on Github are **completely free**, and we’ve outlined the process for putting together a course [on our blog](https://info.p2pu.org/2019/05/16/creating-an-open-course-with-p2pu/). If you’d like to hire us to help you set things up and/or co-design the course with you, [we can do that](https://www.p2pu.org/en/work-with-us/). 
+The best way to study for this course is to follow the sequence:
+1. Read the the (mostly theoretical) **lecture slides (pdf)** to gain an understanding of the main concepts without the encumbrance of detailed code. The algorithms in these slides are written in  pseudo code to illustrate the different operations on data structures and algorithms.
+
+2. Each chapter(except complexity) has a section containing an **annotated C++ implementation**  of the data structures and algorithms used in that chapter.
+
+3. Finally, the code below  is a repository containing the complete source code of the
+ examples we discuss in class.
 
 
-Here are some recent courses that have been built with Course in a Box:
+This [repository](https://github.com/NDU-CSC313/inclass) contains all the code that we will be discussing in class. 
+__Note__: all header files are in the include directory.
+To build the code create a build directory then cd to it and type
 
-- [Learning to (re)use open educational resources](http://www.exploerercourse.org/) by Creative Commons & Open University
-- [Create and sustain effective makerspaces in your community](http://p2pu.github.io/makingandlearning/) by Pittsburgh Children’s Museum
-- [Learning about learning circles](https://p2pu.github.io/facilitate-course/) by P2PU
+> cmake ..
 
+This will create a **Visual C++ solution** containing multiple projects where each project 
+is an example we discuss in class. Note that many of these projects use different 
+portions of the **same** source file. Each example is "activated" by enabling a different preprocessor variable. If you select an example project you will see that only the 
+relevant portion of the code is highlighted (i.e. "enabled") by defining (i.e. #define) 
+a corresponding preprocessor variable and the rest is not.
 
-## Reach new audiences
+If you are using Xcode on Mac then type
 
-Online courses take a big step forwards in the sharing of knowledge around the world. However, your course is only ever as good as the people it reaches. To help reach new audiences with online courses, P2PU developed learning circles: groups for people who take online courses together, in local libraries or community spaces.
-
-Once you create a course, you can add it to P2PU’s learning circle [course page](http://p2pu.org/en/courses/), a growing database of online courses that people are using to facilitate learning circles around the world. You can also check out our [facilitator page](https://www.p2pu.org/en/facilitate/) to learn how to run your own learning circle.
+> cmake -G Xcode ..
 
 
