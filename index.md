@@ -14,7 +14,7 @@ We will be making heavy use of C++ so it is important you read the c++ review ea
 The best way to study for this course is to follow the sequence:
 1. Read the the (mostly theoretical) **lecture slides (pdf)** to gain an understanding of the main concepts without the encumbrance of detailed code. The algorithms in these slides are written in  pseudo code to illustrate the different operations on data structures and algorithms.
 
-2. Each chapter(except complexity) has a section containing an **annotated C++ implementation**  of the data structures and algorithms used in that chapter.
+2. Read the corresponding  section in the CODE menu. This contains an  **annotated C++ implementation**  of the data structures and algorithms used in that chapter.
 
 3. Finally, the code below  is a repository containing the complete source code of the
  examples we discuss in class.
