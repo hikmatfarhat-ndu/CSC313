@@ -158,7 +158,7 @@ what happens is the following
 1. t in main is copy ctored from the tmp
 1. tmp is destroyed
 1. when main exists t is destroyed
-```
+```cpp
 $g++-10 -fno-elide-constructors -std=c++11 rvopt.cpp
 $./a.out
 ctor
@@ -328,7 +328,7 @@ int main(){
 }
 ```
 No constructor is supplied so the compiler uses a default that creates variables _x and _y. The output is 
-```
+```cpp
 0
 0
 ```
