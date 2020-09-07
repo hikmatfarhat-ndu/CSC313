@@ -3,12 +3,12 @@ layout: index
 published: true
 ---
 
-## Syllabus
+## Description
 
-This course provides a detailed coverage of standard data structures with an emphasis on 
-complexity analysis. Topics include: Asymptotic analysis, vectors, linked lists, stacks, queues,
-trees and balanced trees, hashing, priority queues and heaps, sorting. Standard graph algorithms 
-such as DFS, BFS, shortest paths and minimum spanning trees are also covered.
+This course provides a detailed coverage of **standard data structures** with an emphasis on 
+complexity analysis. Topics include: **Asymptotic analysis**, **vectors**, **linked lists**,
+**stacks**, **queues**, **trees** and **balanced trees**, **hashing**, **priority queues** 
+and **heaps**, **sorting**. Standard graph algorithms  such as DFS, BFS, shortest paths and minimum spanning trees are also covered.
 We will be making heavy use of C++ so it is important you read the c++ review early before the course really takes off.
 
 The best way to study for this course is to follow the sequence:
